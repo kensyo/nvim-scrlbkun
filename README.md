@@ -86,36 +86,133 @@ The default configuration is as follows.
     -- On these buftypes, any scrollbars don't come out.
     excluded_buftypes = {"prompt"},
 
-    -- A scrollbar is hidden on these events.
+    -- A scrollbar is hidden at these events.
     hide_events = {"WinLeave", "BufLeave", "BufWinLeave", "FocusLost"},
 
-    -- A scrollbar is deleted on these events.
+    -- A scrollbar area is deleted at these events.
     -- The difference between hide and delete is whether
     -- the buffer for display is deleted.
     delete_events = {"QuitPre"},
 
-    -- Time until a scrollbar is hidden. Specify in milliseconds.
-    -- If set to 0, a scrollbar isn't hidden over time.
+    -- Time until a scrollbar area is hidden. Specify in milliseconds.
+    -- If set to 0, a scrollbar area isn't hidden over time.
     fadeout_time = 2000,
 
-    cursor = {
-    },
-
+    -- bar component
     bar = {
+        -- If set to true, the bar component is enabled.
+        enable = true,
+
+        -- The component is drawn at these events.
+        draw_events = {"WinScrolled", "BufEnter", "FocusGained"},
+
+        -- The component is drawn on all the windows in the current tabpage
+        -- at these events. But if single_window is set to true, draw_events_tab
+        -- is treated exactly the same as draw_events.
+        draw_events_tab = {"VimResized", "TabEnter"},
+
+        -- When components overlap, the one with the higher priority is drawn.
+        -- Specify by positive integer.
+        priority = 100,
+
+        -- A sign for a scrollbar. It is recommended not to change it from
+        -- the default empty symbol.
+        sign = " ",
+
     },
 
-    diagnostics = {
+    -- cursor component
+    cursor = {
+        -- The same as those of the bar component
+        enable = true,
+        draw_events = {"BufEnter", "FocusGained", "CursorMoved"},
+        draw_events_tab = {"VimResized", "TabEnter"},
+        priority = 150,
+
+        -- Signs for a cursor. Specify in array. If you specify an array of n-elements,
+        -- then the sign to be used is determined in n more levels depending on the
+        -- cursor position.
+        signs = {
+            "▔",
+            "━",
+            "▁",
+        },
+
+        -- How to determin the sign to be used. "skip_first" or "normal"
+        sign_arrangement = "skip_first"
     },
 
-    githunks = {
-    },
-
+    -- search component
     search = {
+        -- The same as those of the bar component
+        enable = true,
+        draw_events = {},
+        draw_events_tab = {"TextChanged", "TextChangedI",
+            "TextChangedP", "CmdlineLeave", "TabEnter", "CmdlineChanged"},
+        priority = 500
+
+        -- Signs for search results.
+        -- If you specify an array of n-elements,
+        -- then the sign to be used is determined in n more levels depending
+        -- on the number of matched terms
+        signs = {
+            ".",
+            ":",
+        },
+
+        -- If set to true, the 'signs' option is ignored and the plugin uses
+        -- symbols and an algorithm that allow for just a little more detailed
+        -- drawing.
+        use_built_in_signs = true,
+    },
+
+    -- diagnostics component
+    diagnostics = {
+        -- The same as those of the bar component
+        enable = true,
+        draw_events = {},
+        draw_events_tab = {"BufEnter", "DiagnosticChanged", "TabEnter"},
+        priority = 300,
+
+        -- Signs for diagnostics. 
+        signs = {
+            -- If you specify an array of n-elements,
+            -- then the sign to be used is determined in n more levels depending
+            -- on the number of errors {warns, infos, hints}.
+            ERROR = {".", ":"},
+            WARN = {".", ":"},
+            INFO = {".", ":"},
+            HINT = {".", ":"},
+        },
+
+        -- The same as that of the search component
+        use_built_in_signs = true,
     }
+
+    -- githunks component
+    githunks = {
+        -- The same as those of the bar component
+        enable = true,
+        draw_events = {},
+        draw_events_tab = {"BufEnter", "TabEnter",
+            "TextChanged", "TextChangedI", "TextChangedP"},
+        priority = 200,
+
+        -- Signs for githunks. 
+        signs = {
+            -- If you specify an array of n-elements,
+            -- then the sign to be used is determined in n more levels depending
+            -- on add {delete, change}-hunks length
+            add = {"│"},
+            delete = {"▸"},
+            change = {"│"},
+        },
+
+        -- The same as that of the search component
+        use_built_in_signs = false,
+    },
 }
 ```
-
-See the help for more details.
 
 ### Highlighting
 
