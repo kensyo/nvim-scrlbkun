@@ -4,7 +4,8 @@ A scrollbar plugin for neovim.
 
 ## Overview
 
-The plugin enables neovim to display the followings at the right edge of windows.
+The plugin enables neovim to display the following components
+at the right edge of windows.
 
 * Scrollbar (mouse operation is not supported)
 * Cursor position
@@ -22,7 +23,7 @@ Vim is not supported. It is available only to neovim.
 
 The plugin requires neovim >= 0.7.0
 
-Switch `'hlsearch'` on to display the results of search,
+Switch `'hlsearch'` on to display search results
 
 ```vim
 :set hlsearch
@@ -71,7 +72,7 @@ The default configuration is as follows.
 ```lua
 {
     -- If you want to display scrollbars on multiple windows, set to false.
-    -- If set to true, a scrollbar comes out only on the current window.
+    -- If set to true, a scrollbar area comes out only on the current window.
     single_window = true,
 
     -- zindex of scrollbar areas.
