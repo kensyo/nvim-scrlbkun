@@ -215,7 +215,7 @@ The default configuration is as follows.
 }
 ```
 
-### Highlighting
+## Highlighting
 
 You can configure the following highlights.
 
