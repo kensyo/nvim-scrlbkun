@@ -1,10 +1,10 @@
-# Scrlbkun
+# scrlbkun
 
 A scrollbar plugin for neovim.
 
 ## Overview
 
-The plugin enables neovim to display the following components
+scrlbkun enables neovim to display the following components
 at the right edge of windows.
 
 * Scrollbar (mouse operation is not supported)
@@ -21,7 +21,7 @@ Vim is not supported. It is available only to neovim.
 
 ## Requirements
 
-The plugin requires neovim >= 0.7.0
+scrlbkun requires neovim >= 0.7.0
 
 Switch `'hlsearch'` on to display search results
 
@@ -31,7 +31,7 @@ Switch `'hlsearch'` on to display search results
 
 ## Installation
 
-You can install it in any way you like, just like any other plugin.
+You can install the plugin in any way you like, just like any other plugin.
 
 For example, if you use [vim-plug](https://github.com/junegunn/vim-plug),
 
@@ -67,7 +67,6 @@ require('scrlbkun').setup({
 ## Configuration
 
 The default configuration is as follows.
-<!-- TODO: write -->
 
 ```lua
 {
