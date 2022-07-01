@@ -255,7 +255,12 @@ require('scrlbkun.components.githunks').disable()
 ```
 
 ## Similar Plugins
-<!-- TODO: write -->
+
+* [satellite.nvim](https://github.com/lewis6991/satellite.nvim)
+* [scrollbar.nvim](https://github.com/Xuyuanp/scrollbar.nvim)
+* [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)
+
+They are helpful for implementing this plugin, too.
 
 ## LICENSE
 
