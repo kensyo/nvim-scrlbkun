@@ -232,7 +232,27 @@ You can configure the following highlights.
 
 ## Functions
 
-<!-- TODO: write -->
+Lua functions to switch between enable and disable are provided.
+
+```lua
+-- For enabling
+require('scrlbkun.components').enable_all()
+
+require('scrlbkun.components.bar').enable()
+require('scrlbkun.components.cursor').enable()
+require('scrlbkun.components.search').enable()
+require('scrlbkun.components.diagnostics').enable()
+require('scrlbkun.components.githunks').enable()
+
+-- For disabling
+require('scrlbkun.components').disable_all()
+
+require('scrlbkun.components.bar').disable()
+require('scrlbkun.components.cursor').disable()
+require('scrlbkun.components.search').disable()
+require('scrlbkun.components.diagnostics').disable()
+require('scrlbkun.components.githunks').disable()
+```
 
 ## Similar Plugins
 <!-- TODO: write -->
