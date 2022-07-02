@@ -160,7 +160,7 @@ The default configuration is as follows.
             ":",
         },
 
-        -- If set to true, the 'signs' option is ignored and the plugin uses
+        -- If set to true, the 'signs' field is ignored and the plugin uses
         -- symbols and an algorithm that allow for just a little more detailed
         -- drawing.
         use_built_in_signs = true,
