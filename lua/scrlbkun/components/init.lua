@@ -5,8 +5,12 @@ local components = {
     require('scrlbkun.components.search'),
     require('scrlbkun.components.diagnostics'),
     require('scrlbkun.components.cursor'),
-    require('scrlbkun.components.githunks')
 }
+
+local ok, _ = pcall(require, "gitsigns")
+if ok then
+    table.insert(components, require('scrlbkun.components.githunks'))
+end
 
 local enabled_components = {
 }

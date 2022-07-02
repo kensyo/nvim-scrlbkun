@@ -72,9 +72,9 @@ local function determine_type_to_use(detail)
 end
 
 function M:calculate(window_id)
-    if not package.loaded.gitsigns then
-        return {}
-    end
+    -- if not package.loaded.gitsigns then
+    --     return {}
+    -- end
 
     local s = states.states[window_id]
     local number_of_liness_in_display_buffer = s.number_of_lines_in_display_buffer
