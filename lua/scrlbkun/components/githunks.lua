@@ -85,7 +85,7 @@ function M:calculate(window_id)
     local hunks_info = {}
 
     for _, hunk in pairs(require('gitsigns').get_hunks(buffer_number) or {}) do
-        local type = hunk.type
+        local hunk_type = hunk.type
         -- 0-based
         local start_line = math.max(0, hunk.added.start - 1)
         for i = start_line, start_line + math.max(0, hunk.added.count - 1) do
@@ -98,16 +98,16 @@ function M:calculate(window_id)
                 hunks_info[coordinate] = {}
             end
 
-            if not hunks_info[coordinate][type] then
-                hunks_info[coordinate][type] = {}
-                hunks_info[coordinate][type].upper = 0
-                hunks_info[coordinate][type].lower = 0
+            if not hunks_info[coordinate][hunk_type] then
+                hunks_info[coordinate][hunk_type] = {}
+                hunks_info[coordinate][hunk_type].upper = 0
+                hunks_info[coordinate][hunk_type].lower = 0
             end
 
             if fractional_part < 0.5 then
-                hunks_info[coordinate][type].upper = hunks_info[coordinate][type].upper + 1
+                hunks_info[coordinate][hunk_type].upper = hunks_info[coordinate][hunk_type].upper + 1
             else
-                hunks_info[coordinate][type].lower = hunks_info[coordinate][type].lower + 1
+                hunks_info[coordinate][hunk_type].lower = hunks_info[coordinate][hunk_type].lower + 1
             end
         end
     end
