@@ -46,7 +46,7 @@ local built_in_signs = {
 -- .
 -- Origiinally under BSD 3-Clause lisence, https://github.com/kevinhwang91/nvim-hlslens/blob/main/LICENSE
 --   Copyright (c) 2021, kevinhwang91
--- Relicensed under the MIT license, <TODO: url>
+-- Relicensed under the MIT license, https://github.com/kensyo/nvim-scrlbkun/blob/main/LICENSE
 --   Copyright (c) 2022, kensyo
 
 ffi.cdef([[
