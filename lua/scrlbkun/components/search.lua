@@ -129,7 +129,7 @@ local M = require('scrlbkun.components.base').new(component_name, default_config
 
 local function is_search_mode()
     return api.nvim_get_mode().mode == 'c'
-        and vim.tbl_contains({ '/', '?' }, fn.getcmdtype())
+        and vim.tbl_contains({'/', '?'}, fn.getcmdtype())
 end
 
 local function get_search_pattern()
