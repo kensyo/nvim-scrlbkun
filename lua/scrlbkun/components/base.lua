@@ -180,7 +180,7 @@ function M:init()
     local is_enabled = config[self.component_name].enable
     self:create_autocmd(is_enabled)
     if is_enabled then
-        self:enable()
+        require('scrlbkun.components').add_to_enabled_components(self)
     end
 end
 
