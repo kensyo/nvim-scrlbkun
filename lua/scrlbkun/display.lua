@@ -140,6 +140,11 @@ local function delete(window_id)
 end
 
 local function is_window_to_draw(window_id)
+    -- Ignore cmdline windows
+    if vim.tbl_contains({'/', '?', ':'}, fn.getcmdwintype()) then
+        return false
+    end
+
     local window_config = api.nvim_win_get_config(window_id)
 
     -- Ignore floating windows
