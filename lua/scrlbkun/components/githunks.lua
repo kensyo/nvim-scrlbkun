@@ -26,18 +26,15 @@ local highlight_names = {
 local highlights = {
     [highlight_names.add] = {
         default = true,
-        fg = api.nvim_get_hl_by_name('GitSignsAdd', true).foreground,
-        ctermfg = api.nvim_get_hl_by_name('GitSignsAdd', false).foreground
+        link = "GitSignsAdd"
     },
     [highlight_names.delete] = {
         default = true,
-        fg = api.nvim_get_hl_by_name('GitSignsDelete', true).foreground,
-        ctermfg = api.nvim_get_hl_by_name('GitSignsDelete', false).foreground
+        link = "GitSignsDelete"
     },
     [highlight_names.change] = {
         default = true,
-        fg = api.nvim_get_hl_by_name('GitSignsChange', true).foreground,
-        ctermfg = api.nvim_get_hl_by_name('GitSignsChange', false).foreground
+        link = "GitSignsChange"
     },
 }
 
@@ -72,9 +69,6 @@ local function determine_type_to_use(detail)
 end
 
 function M:calculate(window_id)
-    -- if not package.loaded.gitsigns then
-    --     return {}
-    -- end
 
     local s = states.states[window_id]
     local number_of_liness_in_display_buffer = s.number_of_lines_in_display_buffer
