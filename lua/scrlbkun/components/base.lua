@@ -113,7 +113,7 @@ function M:create_autocmd(is_enabled)
         return
     end
 
-    local single_window_function = function ()
+    local callback_for_single_window = function ()
         self:execute(api.nvim_get_current_win())
     end
 
@@ -121,45 +121,21 @@ function M:create_autocmd(is_enabled)
 
     local component_name = self.component_name
     local draw_events = config[component_name].draw_events
-    if draw_events and #draw_events > 0 then
-        api.nvim_create_autocmd(draw_events, {
-            group = group,
-            callback = single_window_function
-        })
-    end
-
-    local draw_user_event_patterns = config[component_name].draw_user_event_patterns
-    if draw_user_event_patterns and #draw_user_event_patterns > 0 then
-        api.nvim_create_autocmd("User", {
-            pattern = draw_user_event_patterns,
-            group = group,
-            callback = single_window_function
-        })
-    end
+    util.create_autocmd_wrapped(group, draw_events, callback_for_single_window)
 
     if config.single_window then
         -- Even events in draw_events_tab apply to the current window only
         local draw_events_tab = config[component_name].draw_events_tab
-        if draw_events_tab and #draw_events_tab > 0 then
-            api.nvim_create_autocmd(draw_events_tab, {
-                group = group,
-                callback = single_window_function
-            })
-        end
+        util.create_autocmd_wrapped(group, draw_events_tab, callback_for_single_window)
     else
-        local multi_windows_function = function ()
+        local callback_for_multi_windows = function ()
             util.execute_on_all_windows_in_current_tab(function(window_id)
                 self:execute(window_id)
             end)
         end
 
         local draw_events_tab = config[component_name].draw_events_tab
-        if draw_events_tab and #draw_events_tab > 0 then
-            api.nvim_create_autocmd(draw_events_tab, {
-                group = group,
-                callback = multi_windows_function
-            })
-        end
+        util.create_autocmd_wrapped(group, draw_events_tab, callback_for_multi_windows)
     end
 end
 

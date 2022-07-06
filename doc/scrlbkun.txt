@@ -93,8 +93,20 @@ table is implicitly passed.
         search = {
             enable = true,
             draw_events = {},
-            draw_events_tab = {"TextChanged", "TextChangedI",
-                "TextChangedP", "CmdlineLeave", "TabEnter", "CmdlineChanged"},
+            draw_events_tab = {
+                "TextChanged",
+                "TextChangedI",
+                "TextChangedP",
+                "TabEnter",
+                {
+                    "CmdlineLeave",
+                    {"/", "\\?", ":"}
+                },
+                {
+                    "CmdlineChanged",
+                    {"/", "\\?"}
+                },
+            },
             priority = 500
             signs = {
                 ".",
@@ -170,6 +182,9 @@ Type: table (Default: {"prompt"})
 hide_events                                *scrlbkun-config.hide_events*
 ----------------
 A scrollbar is hidden at these events.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
 Type: table (Default: {"WinLeave", "BufLeave", "BufWinLeave", "FocusLost"})
 
 delete_events                              *scrlbkun-config.delete_events*
@@ -177,6 +192,9 @@ delete_events                              *scrlbkun-config.delete_events*
 A scrollbar area is deleted at these events.
 The difference between hide and delete is whether the buffer for display
 is deleted.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
 Type: table (Default: {"QuitPre"})
 
 fadeout_time                               *scrlbkun-config.fadeout_time*
@@ -195,6 +213,9 @@ Type: boolean (Default: true)
 bar.draw_events                            *scrlbkun-config.bar.draw_events*
 ----------------
 The bar component is drawn at these events.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
 Type: table (Default: {"WinScrolled", "BufEnter", "FocusGained"})
 
 bar.draw_events_tab                        *scrlbkun-config.bar.draw_events_tab*
@@ -203,6 +224,9 @@ The bar component is drawn on all the windows in the current tabpage
 at these events. But if |scrlbkun-config.single_window| is set to true,
 |scrlbkun-config.bar.draw_events_tab| is treated exactly the same as
 |scrlbkun-config.bar.draw_events|.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
 Type: table (Default: {"VimResized", "TabEnter"})
 
 bar.priority                               *scrlbkun-config.bar.priority*
@@ -227,6 +251,9 @@ Type: boolean (Default: true)
 cursor.draw_events                         *scrlbkun-config.cursor.draw_events*
 ----------------
 The cursor component is drawn at these events.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
 Type: table (Default: {"BufEnter", "FocusGained", "CursorMoved"})
 
 cursor.draw_events_tab                     *scrlbkun-config.cursor.draw_events_tab*
@@ -235,6 +262,9 @@ The cursor component is drawn on all the windows in the current tabpage
 at these events. But if |scrlbkun-config.single_window| is set to true,
 |scrlbkun-config.cursor.draw_events_tab| is treated exactly the same as
 |scrlbkun-config.cursor.draw_events|.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
 Type: table (Default: {"VimResized", "TabEnter"})
 
 cursor.priority                            *scrlbkun-config.cursor.priority*
@@ -268,6 +298,9 @@ Type: boolean (Default: true)
 search.draw_events                         *scrlbkun-config.search.draw_events*
 ----------------
 The search component is drawn at these events.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
 Type: table (Default: {})
 
 search.draw_events_tab                     *scrlbkun-config.search.draw_events_tab*
@@ -276,8 +309,23 @@ The search component is drawn on all the windows in the current tabpage
 at these events. But if |scrlbkun-config.single_window| is set to true,
 |scrlbkun-config.search.draw_events_tab| is treated exactly the same as
 |scrlbkun-config.search.draw_events|.
-Type: table (Default: {"TextChanged", "TextChangedI",
-                "TextChangedP", "CmdlineLeave", "TabEnter", "CmdlineChanged"})
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example, 
+{"CmdlineLeave", {"/", "\\?"}}.
+Type: table (Default: {
+    "TextChanged",
+    "TextChangedI",
+    "TextChangedP",
+    "TabEnter",
+    {
+        "CmdlineLeave",
+        {"/", "\\?", ":"}
+    },
+    {
+        "CmdlineChanged",
+        {"/", "\\?"}
+    },
+})
 
 search.priority                            *scrlbkun-config.search.priority*
 ----------------
@@ -309,6 +357,9 @@ Type: boolean (Default: true)
 diagnostics.draw_events                    *scrlbkun-config.diagnostics.draw_events*
 ----------------
 The diagnostics component is drawn at these events.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
 Type: table (Default: {})
 
 diagnostics.draw_events_tab                *scrlbkun-config.diagnostics.draw_events_tab*
@@ -317,6 +368,9 @@ The diagnostics component is drawn on all the windows in the current tabpage
 at these events. But if |scrlbkun-config.single_window| is set to true,
 |scrlbkun-config.diagnostics.draw_events_tab| is treated exactly the same as
 |scrlbkun-config.diagnostics.draw_events|.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
 Type: table (Default: {"BufEnter", "DiagnosticChanged", "TabEnter"})
 
 diagnostics.priority                       *scrlbkun-config.diagnostics.priority*
@@ -370,6 +424,9 @@ Type: boolean (Default: true)
 githunks.draw_events                       *scrlbkun-config.githunks.draw_events*
 ----------------
 The githunks component is drawn at these events.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
 Type: table (Default: {})
 
 githunks.draw_events_tab                   *scrlbkun-config.githunks.draw_events_tab*
@@ -378,6 +435,9 @@ The githunks component is drawn on all the windows in the current tabpage
 at these events. But if |scrlbkun-config.single_window| is set to true,
 |scrlbkun-config.githunks.draw_events_tab| is treated exactly the same as
 |scrlbkun-config.githunks.draw_events|.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
 Type: table (Default: {"BufEnter", "TabEnter",
                     "TextChanged", "TextChangedI", "TextChangedP"})
 

@@ -31,8 +31,32 @@ local function execute_on_all_windows_in_current_tab(callback)
     end
 end
 
+local function create_autocmd_wrapped(group, events, callback)
+    if not (events and #events > 0) then
+        return
+    end
+
+    for _, event in ipairs(events) do
+        local event_name, pattern
+        if type(event) == "table" then
+            event_name, pattern = event[1], event[2]
+        elseif type(event) == "string" then
+            event_name = event
+        else
+            error("invalid event format")
+        end
+        api.nvim_create_autocmd(event_name, {
+            group = group,
+            callback = callback,
+            pattern = pattern
+        })
+    end
+end
+
+
 M.deep_contains = deep_contains
 M.set_timeout = set_timeout
 M.execute_on_all_windows_in_current_tab = execute_on_all_windows_in_current_tab
+M.create_autocmd_wrapped = create_autocmd_wrapped
 
 return M

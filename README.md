@@ -87,11 +87,16 @@ The default configuration is as follows.
     excluded_buftypes = {"prompt"},
 
     -- A scrollbar is hidden at these events.
+    -- If you want to specify patterns as well, specify them as an array
+    -- {event_name(string), patterns(string|array)}. For example,
+    -- {"CmdlineLeave", {"/", "\\?"}}.
     hide_events = {"WinLeave", "BufLeave", "BufWinLeave", "FocusLost"},
 
     -- A scrollbar area is deleted at these events.
     -- The difference between hide and delete is whether
     -- the buffer for display is deleted.
+    -- As with Hide_events, the specification {event_name, patterns}
+    -- can also be used.
     delete_events = {"QuitPre"},
 
     -- Time until a scrollbar area is hidden. Specify in milliseconds.
@@ -104,11 +109,15 @@ The default configuration is as follows.
         enable = true,
 
         -- The component is drawn at these events.
+        -- As with Hide_events, the specification {event_name, patterns}
+        -- can also be used.
         draw_events = {"WinScrolled", "BufEnter", "FocusGained"},
 
         -- The component is drawn on all the windows in the current tabpage
         -- at these events. But if single_window is set to true, draw_events_tab
         -- is treated exactly the same as draw_events.
+        -- As with Hide_events, the specification {event_name, patterns}
+        -- can also be used.
         draw_events_tab = {"VimResized", "TabEnter"},
 
         -- When components overlap, the one with the higher priority is drawn.
@@ -147,8 +156,20 @@ The default configuration is as follows.
         -- The same as those of the bar component
         enable = true,
         draw_events = {},
-        draw_events_tab = {"TextChanged", "TextChangedI",
-            "TextChangedP", "CmdlineLeave", "TabEnter", "CmdlineChanged"},
+        draw_events_tab = {
+            "TextChanged",
+            "TextChangedI",
+            "TextChangedP",
+            "TabEnter",
+            {
+                "CmdlineLeave",
+                {"/", "\\?", ":"}
+            },
+            {
+                "CmdlineChanged",
+                {"/", "\\?"}
+            },
+        },
         priority = 500
 
         -- Signs for search results.

@@ -41,39 +41,21 @@ local function setup(user_config)
         or function ()
                 util.execute_on_all_windows_in_current_tab(execute_for_winscrolled)
             end
-    api.nvim_create_autocmd({"WinScrolled"}, {
-        group = group_form,
-        callback = form_callback
-    })
-
+    util.create_autocmd_wrapped(group_form, {"WinScrolled"}, form_callback)
 
     if config.single_window then
         local hide_events = config.hide_events
-        if hide_events and #hide_events > 0 then
-            local group_hide = api.nvim_create_augroup("_ScrlbkunHide", {})
-
-            api.nvim_create_autocmd(hide_events, {
-                group = group_hide,
-                callback = function()
-                    display.hide(api.nvim_get_current_win())
-                end
-            })
-        end
+        local group_hide = api.nvim_create_augroup("_ScrlbkunHide", {})
+        util.create_autocmd_wrapped(group_hide, hide_events, function ()
+            display.hide(api.nvim_get_current_win())
+        end)
     end
-
 
     local delete_events = config.delete_events
-    if delete_events and #delete_events > 0 then
-        local group_delete = api.nvim_create_augroup("_ScrlbkunDelete", {})
-
-        api.nvim_create_autocmd(delete_events, {
-            group = group_delete,
-            callback = function()
-                display.delete(api.nvim_get_current_win())
-            end
-        })
-    end
-
+    local group_delete = api.nvim_create_augroup("_ScrlbkunDelete", {})
+    util.create_autocmd_wrapped(group_delete, delete_events, function ()
+        display.delete(api.nvim_get_current_win())
+    end)
 end
 
 M.setup = setup

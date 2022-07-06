@@ -16,7 +16,20 @@ local default_config = {
         ":",
     },
     draw_events = {},
-    draw_events_tab = {"TextChanged", "TextChangedI", "TextChangedP", "CmdlineLeave", "TabEnter", "CmdlineChanged"},
+    draw_events_tab = {
+        "TextChanged",
+        "TextChangedI",
+        "TextChangedP",
+        "TabEnter",
+        {
+            "CmdlineLeave",
+            {"/", "\\?", ":"}
+        },
+        {
+            "CmdlineChanged",
+            {"/", "\\?"}
+        },
+    },
     priority = 500
 }
 
