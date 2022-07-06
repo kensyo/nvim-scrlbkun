@@ -88,6 +88,7 @@ ffi.cdef([[
     typedef struct file_buffer buf_T;
 
     regprog_T *vim_regcomp(char_u *expr_arg, int re_flags);
+    void vim_regfree(regprog_T *prog);
 
     char_u *ml_get_buf(buf_T *buf, linenr_T lnum, bool will_change);
 
@@ -208,6 +209,7 @@ function M:calculate(window_id)
                 end
             end
         end
+        C.vim_regfree(reg_match.regprog)
 
         -- Update cache
         cache[buffer_number] = {
