@@ -16,7 +16,7 @@ local default_config = {
     use_built_in_signs = true,
     draw_events = {},
     draw_events_tab = {"BufEnter", "DiagnosticChanged", "TabEnter"},
-    priority = 300,
+    priority = 400,
 }
 
 local highlight_names = {

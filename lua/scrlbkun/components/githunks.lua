@@ -14,7 +14,7 @@ local default_config = {
     use_built_in_signs = false,
     draw_events = {},
     draw_events_tab = {"BufEnter", "TabEnter", "TextChanged", "TextChangedI", "TextChangedP"},
-    priority = 200,
+    priority = 300,
 }
 
 local highlight_names = {

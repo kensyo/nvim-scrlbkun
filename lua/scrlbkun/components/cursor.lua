@@ -19,7 +19,7 @@ local default_config = {
     },
     draw_events = {"BufEnter", "FocusGained", "CursorMoved"},
     draw_events_tab = {"VimResized", "TabEnter"},
-    priority = 150,
+    priority = 200,
     sign_arrangement = "skip_first", -- "skip_first" or "normal"
 }
 
