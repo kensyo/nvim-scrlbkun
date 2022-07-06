@@ -17,7 +17,8 @@ at the right edge of windows.
 Vim is not supported. It is available only to neovim.
 
 ## Preview
-<!-- TODO: write -->
+
+![scrlbkun_preview1](https://user-images.githubusercontent.com/9912146/177551550-b4f8c112-1dc5-4fa5-b9eb-1b6fcfd8bf51.gif)
 
 ## Requirements
 
