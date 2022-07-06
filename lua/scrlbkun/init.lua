@@ -4,6 +4,9 @@ local util = require('scrlbkun.util')
 
 local M = {}
 
+local hide_events = {"WinLeave", "BufLeave", "BufWinLeave", "FocusLost"}
+local delete_events = {"QuitPre"}
+
 local function execute_for_winscrolled(window_id)
     if not display.is_window_to_draw(window_id) then
         display.delete(window_id)
@@ -44,14 +47,12 @@ local function setup(user_config)
     util.create_autocmd_wrapped(group_form, {"WinScrolled"}, form_callback)
 
     if config.single_window then
-        local hide_events = config.hide_events
         local group_hide = api.nvim_create_augroup("_ScrlbkunHide", {})
         util.create_autocmd_wrapped(group_hide, hide_events, function ()
             display.hide(api.nvim_get_current_win())
         end)
     end
 
-    local delete_events = config.delete_events
     local group_delete = api.nvim_create_augroup("_ScrlbkunDelete", {})
     util.create_autocmd_wrapped(group_delete, delete_events, function ()
         display.delete(api.nvim_get_current_win())

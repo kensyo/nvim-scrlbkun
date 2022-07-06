@@ -65,8 +65,6 @@ table is implicitly passed.
         winblend = 40,
         excluded_filetypes = {"NvimTree"},
         excluded_buftypes = {"prompt"},
-        hide_events = {"WinLeave", "BufLeave", "BufWinLeave", "FocusLost"},
-        delete_events = {"QuitPre"},
         fadeout_time = 2000,
 
         bar = {
@@ -178,24 +176,6 @@ excluded_buftypes                          *scrlbkun-config.excluded_buftypes*
 ----------------
 On these buftypes, any scrollbars don't come out.
 Type: table (Default: {"prompt"})
-
-hide_events                                *scrlbkun-config.hide_events*
-----------------
-A scrollbar is hidden at these events.
-If you want to specify patterns as well, specify them as an array
-{event_name(string), patterns(string|array)}. For example,
-{"CmdlineLeave", {"/", "\\?"}}.
-Type: table (Default: {"WinLeave", "BufLeave", "BufWinLeave", "FocusLost"})
-
-delete_events                              *scrlbkun-config.delete_events*
-----------------
-A scrollbar area is deleted at these events.
-The difference between hide and delete is whether the buffer for display
-is deleted.
-If you want to specify patterns as well, specify them as an array
-{event_name(string), patterns(string|array)}. For example,
-{"CmdlineLeave", {"/", "\\?"}}.
-Type: table (Default: {"QuitPre"})
 
 fadeout_time                               *scrlbkun-config.fadeout_time*
 ----------------

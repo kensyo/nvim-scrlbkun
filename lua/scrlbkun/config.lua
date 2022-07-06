@@ -5,8 +5,6 @@ local config = {
     winblend = 40,
     excluded_filetypes = {"NvimTree"},
     excluded_buftypes = {"prompt"},
-    hide_events = {"WinLeave", "BufLeave", "BufWinLeave", "FocusLost"},
-    delete_events = {"QuitPre"},
     fadeout_time = 2000 -- milliseconds
 }
 

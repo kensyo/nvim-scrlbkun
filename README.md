@@ -86,19 +86,6 @@ The default configuration is as follows.
     -- On these buftypes, any scrollbars don't come out.
     excluded_buftypes = {"prompt"},
 
-    -- A scrollbar is hidden at these events.
-    -- If you want to specify patterns as well, specify them as an array
-    -- {event_name(string), patterns(string|array)}. For example,
-    -- {"CmdlineLeave", {"/", "\\?"}}.
-    hide_events = {"WinLeave", "BufLeave", "BufWinLeave", "FocusLost"},
-
-    -- A scrollbar area is deleted at these events.
-    -- The difference between hide and delete is whether
-    -- the buffer for display is deleted.
-    -- As with Hide_events, the specification {event_name, patterns}
-    -- can also be used.
-    delete_events = {"QuitPre"},
-
     -- Time until a scrollbar area is hidden. Specify in milliseconds.
     -- If set to 0, a scrollbar area isn't hidden over time.
     fadeout_time = 2000,
