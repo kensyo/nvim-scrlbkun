@@ -1,4 +1,4 @@
-*scrlbkun.txt*  A scrollbar plugin for neovim.
+*scrlbkun.txt*  A scrollbar plugin for Neovim.
 
 Version: 1.0.0
 Author: kensyo <takitatateokowa at gmail.com>
@@ -19,9 +19,9 @@ FUNCTIONS                                  |scrlbkun-functions|
 ==============================================================================
 INTRODUCTION                               *scrlbkun-introduction*
 
-*scrlbkun* is a scrollbar plugin for neovim.
+*scrlbkun* is a scrollbar plugin for Neovim.
 
-|scrlbkun| enables neovim to display the following components at the right edge
+|scrlbkun| enables Neovim to display the following components at the right edge
 of windows.
 
 * Scrollbar
