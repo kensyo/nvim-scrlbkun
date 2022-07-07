@@ -124,7 +124,7 @@ The default configuration is as follows.
         enable = true,
         draw_events = {"BufEnter", "FocusGained", "CursorMoved"},
         draw_events_tab = {"VimResized", "TabEnter"},
-        priority = 150,
+        priority = 200,
 
         -- Signs for a cursor. Specify in array. If you specify an array of n-elements,
         -- then the sign to be used is determined in n more levels depending on the
@@ -181,7 +181,7 @@ The default configuration is as follows.
         enable = true,
         draw_events = {},
         draw_events_tab = {"BufEnter", "DiagnosticChanged", "TabEnter"},
-        priority = 300,
+        priority = 400,
 
         -- Signs for diagnostics. 
         signs = {
@@ -205,7 +205,7 @@ The default configuration is as follows.
         draw_events = {},
         draw_events_tab = {"BufEnter", "TabEnter",
             "TextChanged", "TextChangedI", "TextChangedP"},
-        priority = 200,
+        priority = 300,
 
         -- Signs for githunks. 
         signs = {

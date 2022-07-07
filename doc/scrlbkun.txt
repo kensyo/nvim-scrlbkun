@@ -79,7 +79,7 @@ table is implicitly passed.
             enable = true,
             draw_events = {"BufEnter", "FocusGained", "CursorMoved"},
             draw_events_tab = {"VimResized", "TabEnter"},
-            priority = 150,
+            priority = 200,
             signs = {
                 "▔",
                 "━",
@@ -117,7 +117,7 @@ table is implicitly passed.
             enable = true,
             draw_events = {},
             draw_events_tab = {"BufEnter", "DiagnosticChanged", "TabEnter"},
-            priority = 300,
+            priority = 400,
             signs = {
                 ERROR = {".", ":"},
                 WARN = {".", ":"},
@@ -132,7 +132,7 @@ table is implicitly passed.
             draw_events = {},
             draw_events_tab = {"BufEnter", "TabEnter",
                 "TextChanged", "TextChangedI", "TextChangedP"},
-            priority = 200,
+            priority = 300,
             signs = {
                 add = {"│"},
                 delete = {"▸"},
@@ -251,7 +251,7 @@ cursor.priority                            *scrlbkun-config.cursor.priority*
 ----------------
 When components overlap, the one with the higher priority is drawn.
 Specify by positive integer.
-Type: number (Default: 150)
+Type: number (Default: 200)
 
 cursor.signs                               *scrlbkun-config.cursor.signs*
 ----------------
@@ -357,7 +357,7 @@ diagnostics.priority                       *scrlbkun-config.diagnostics.priority
 ----------------
 When components overlap, the one with the higher priority is drawn.
 Specify by positive integer.
-Type: number (Default: 300)
+Type: number (Default: 400)
 
 diagnostics.signs.ERROR                    *scrlbkun-config.diagnostics.signs.ERROR*
 ----------------
@@ -425,7 +425,7 @@ githunks.priority                          *scrlbkun-config.githunks.priority*
 ----------------
 When components overlap, the one with the higher priority is drawn.
 Specify by positive integer.
-Type: number (Default: 200)
+Type: number (Default: 300)
 
 githunks.signs.add                         *scrlbkun-config.githunks.signs.add*
 ----------------
