@@ -102,7 +102,14 @@ local function hide(window_id)
     end
 
     if s.display_window_id then
-        api.nvim_win_close(s.display_window_id, false)
+        -- api.nvim_win_close(s.display_window_id, false)
+        local ok, err = pcall(api.nvim_win_close, s.display_window_id, false)
+        if not ok then
+            -- if err doesn't start with E11, which is about window operations in the cmdline window
+            if not string.find(err, "E11") then
+                error(string.format('%s, %s, %s, %s', "scrlbkun", "delete", "nvim_win_close", err))
+            end
+        end
     end
 
     s.display_window_id = nil
@@ -122,7 +129,14 @@ local function delete(window_id)
     end
 
     if s.display_window_id then
-        api.nvim_win_close(s.display_window_id, false)
+        -- api.nvim_win_close(s.display_window_id, false)
+        local ok, err = pcall(api.nvim_win_close, s.display_window_id, false)
+        if not ok then
+            -- if err doesn't start with E11, which is about window operations in the cmdline window
+            if not string.find(err, "E11") then
+                error(string.format('%s, %s, %s, %s', "scrlbkun", "delete", "nvim_win_close", err))
+            end
+        end
     end
 
     if s.display_buffer_number then
