@@ -84,19 +84,31 @@ function M:calculate(window_id)
 
         match_result = cache[buffer_number].match_result
     else
-        local original_cursor_position = api.nvim_win_get_cursor(window_id)
+         -- save originals and go to the target window
+        local original_window_id = api.nvim_get_current_win()
+        api.nvim_set_current_win(window_id)
+        local original_view = fn.winsaveview()
+        local original_foldenable = api.nvim_win_get_option(window_id, 'foldenable')
+        api.nvim_win_set_option(window_id, 'foldenable', false)
+
         api.nvim_win_set_cursor(window_id, {1, 0})
         local line_number = 1
         while true do
             local ok
             ok, line_number = pcall(vim.fn.search, pattern, "W")
             if not ok then
+                -- restore
+                api.nvim_win_set_option(window_id, 'foldenable', original_foldenable)
+                fn.winrestview(original_view)
+                api.nvim_set_current_win(original_window_id)
                 return {}
             end
 
             if line_number == 0 then
-                -- The behavior doens't change without the below line. why?
-                api.nvim_win_set_cursor(window_id, original_cursor_position)
+                -- restore
+                api.nvim_win_set_option(window_id, 'foldenable', original_foldenable)
+                fn.winrestview(original_view)
+                api.nvim_set_current_win(original_window_id)
                 break
             end
 
