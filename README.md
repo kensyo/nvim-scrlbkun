@@ -97,14 +97,14 @@ The default configuration is as follows.
         enable = true,
 
         -- The component is drawn at these events.
-        -- As with Hide_events, the specification {event_name, patterns}
-        -- can also be used.
+        -- The specification {event_name, patterns} can also be used.
+        -- For example { "CmdlineLeave", {"/", "\\?", ":"} } is ok.
         draw_events = {"WinScrolled", "BufEnter", "FocusGained"},
 
         -- The component is drawn on all the windows in the current tabpage
         -- at these events. But if single_window is set to true, draw_events_tab
         -- is treated exactly the same as draw_events.
-        -- As with Hide_events, the specification {event_name, patterns}
+        -- As with draw_events, the specification {event_name, patterns}
         -- can also be used.
         draw_events_tab = {"VimResized", "TabEnter"},
 
