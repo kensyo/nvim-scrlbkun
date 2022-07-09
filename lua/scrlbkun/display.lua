@@ -172,9 +172,15 @@ local function is_window_to_draw(window_id)
         return false
     end
 
+    local buffer_number = api.nvim_win_get_buf(window_id)
     local excluded_buftypes = config.excluded_buftypes
-    local buftype = api.nvim_buf_get_option(api.nvim_win_get_buf(window_id), "buftype")
+    local buftype = api.nvim_buf_get_option(buffer_number, "buftype")
     if vim.tbl_contains(excluded_buftypes, buftype) then
+        return false
+    end
+
+    -- Ignore unloaded buffers
+    if api.nvim_buf_line_count(buffer_number) == 0 then
         return false
     end
 
