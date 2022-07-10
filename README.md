@@ -59,7 +59,7 @@ pass a configuration table to the setup funciton
 ```lua
 require('scrlbkun').setup({
     single_window = false,
-        cursor = {
+    cursor = {
             enable = false
     }
 })
