@@ -7,12 +7,14 @@ A scrollbar plugin for Neovim.
 scrlbkun enables Neovim to display the following components
 at the right edge of windows.
 
-* Scrollbar (mouse operation is not supported)
+* Scrollbar
 * Cursor position
 * Positions of matched terms in the search mode
 (the `'hlsearch'` option must be on)
 * Positions of diagnostics results
 * Positions of git hunks (requires [gitsigns](https://github.com/lewis6991/gitsigns.nvim))
+
+Another feature is the auto-hiding of scrollbars.
 
 Vim is not supported. It is available only to Neovim.
 
