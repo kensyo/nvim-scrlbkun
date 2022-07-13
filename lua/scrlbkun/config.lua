@@ -5,7 +5,8 @@ local config = {
     winblend = 40,
     excluded_filetypes = {"NvimTree"},
     excluded_buftypes = {"prompt"},
-    fadeout_time = 2000 -- milliseconds
+    fadeout_time = 2000, -- milliseconds
+    width = 3
 }
 
 local M = {}

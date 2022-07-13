@@ -27,8 +27,14 @@ local function form_buffer(window_id)
         s.number_of_lines_in_display_buffer = api.nvim_win_get_height(window_id)
     end
 
+    local config = require('scrlbkun.config').get()
+    local inserted_empties = ""
+    for _ = 1, config.width - 1 do
+        inserted_empties = inserted_empties .. " "
+    end
+
     for _ = 1, s.number_of_lines_in_display_buffer do
-        table.insert(lines, "")
+        table.insert(lines, inserted_empties)
     end
 
     api.nvim_buf_set_lines(s.display_buffer_number, 0, -1, true, lines)
@@ -51,10 +57,10 @@ local function form_window(window_id)
         style = "minimal",
         relative = "win",
         win = window_id,
-        width = 1,
+        width = config.width,
         height = number_of_lines_in_display_buffer,
         row = 0,
-        col = s.horizontal_offset_of_display_window - 1,
+        col = s.horizontal_offset_of_display_window - config.width,
         focusable = false,
         zindex = config.zindex,
     }

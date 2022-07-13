@@ -7,6 +7,7 @@ local component_name = "bar"
 local default_config = {
     enable = true,
     sign = " ",
+    draw_columns = {1, 2, 3},
     draw_events = {"WinScrolled", "BufEnter", "FocusGained"},
     draw_events_tab = {"VimResized", "TabEnter"},
     priority = 100,

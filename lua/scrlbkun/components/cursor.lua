@@ -17,6 +17,7 @@ local default_config = {
         -- "7",
         -- "8",
     },
+    draw_columns = {1, 2, 3},
     draw_events = {"BufEnter", "FocusGained", "CursorMoved"},
     draw_events_tab = {"VimResized", "TabEnter"},
     priority = 200,
