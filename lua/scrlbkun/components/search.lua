@@ -13,6 +13,7 @@ local default_config = {
         ".",
         ":",
     },
+    draw_columns = {1},
     draw_events = {},
     draw_events_tab = {
         "TextChanged",

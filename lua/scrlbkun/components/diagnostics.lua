@@ -14,6 +14,7 @@ local default_config = {
         HINT = {".", ":"},
     },
     use_built_in_signs = true,
+    draw_columns = {3},
     draw_events = {},
     draw_events_tab = {"BufEnter", "DiagnosticChanged", "TabEnter"},
     priority = 400,

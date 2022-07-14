@@ -66,12 +66,14 @@ table is implicitly passed.
         excluded_filetypes = {"NvimTree"},
         excluded_buftypes = {"prompt"},
         fadeout_time = 2000,
+        width = 3,
 
         bar = {
             enable = true,
             draw_events = {"WinScrolled", "BufEnter", "FocusGained"},
             draw_events_tab = {"VimResized", "TabEnter"},
             priority = 100,
+            draw_columns = {1, 2, 3},
             sign = " ",
         },
 
@@ -80,6 +82,7 @@ table is implicitly passed.
             draw_events = {"BufEnter", "FocusGained", "CursorMoved"},
             draw_events_tab = {"VimResized", "TabEnter"},
             priority = 200,
+            draw_columns = {1, 2, 3},
             signs = {
                 "▔",
                 "━",
@@ -106,6 +109,7 @@ table is implicitly passed.
                 },
             },
             priority = 500
+            draw_columns = {1},
             signs = {
                 ".",
                 ":",
@@ -118,6 +122,7 @@ table is implicitly passed.
             draw_events = {},
             draw_events_tab = {"BufEnter", "DiagnosticChanged", "TabEnter"},
             priority = 400,
+            draw_columns = {2},
             signs = {
                 ERROR = {".", ":"},
                 WARN = {".", ":"},
@@ -133,6 +138,7 @@ table is implicitly passed.
             draw_events_tab = {"BufEnter", "TabEnter",
                 "TextChanged", "TextChangedI", "TextChangedP"},
             priority = 300,
+            draw_columns = {3},
             signs = {
                 add = {"│"},
                 delete = {"▸"},
@@ -183,6 +189,11 @@ Time until a scrollbar area is hidden. Specify in milliseconds.
 If set to 0, a scrollbar area isn't hidden over time.
 Type: number (Default: 2000)
 
+width                                      *scrlbkun-config.width*
+----------------
+The number of columns for display areas of a scrollbar and components
+Type: number (Default: 3)
+
 Fields for the bar component~
 
 bar.enable                                 *scrlbkun-config.bar.enable*
@@ -214,6 +225,13 @@ bar.priority                               *scrlbkun-config.bar.priority*
 When components overlap, the one with the higher priority is drawn.
 Specify by positive integer.
 Type: number (Default: 100)
+
+bar.draw_columns                           *scrlbkun-config.bar.columns*
+----------------
+What number, counting from the left, of the columns allocated
+by the `width` field should be used to display the bar component.
+Specify in an array between 1 and `width`.
+Type: array (Default: {1, 2, 3})
 
 bar.sign                                   *scrlbkun-config.bar.sign*
 ----------------
@@ -252,6 +270,13 @@ cursor.priority                            *scrlbkun-config.cursor.priority*
 When components overlap, the one with the higher priority is drawn.
 Specify by positive integer.
 Type: number (Default: 200)
+
+cursor.draw_columns                        *scrlbkun-config.cursor.columns*
+----------------
+What number, counting from the left, of the columns allocated
+by the `width` field should be used to display the cursor component.
+Specify in an array between 1 and `width`.
+Type: array (Default: {1, 2, 3})
 
 cursor.signs                               *scrlbkun-config.cursor.signs*
 ----------------
@@ -313,6 +338,13 @@ When components overlap, the one with the higher priority is drawn.
 Specify by positive integer.
 Type: number (Default: 500)
 
+search.draw_columns                        *scrlbkun-config.search.columns*
+----------------
+What number, counting from the left, of the columns allocated
+by the `width` field should be used to display the search component.
+Specify in an array between 1 and `width`.
+Type: array (Default: {1})
+
 search.signs                               *scrlbkun-config.search.signs*
 ----------------
 Signs for search results.
@@ -358,6 +390,13 @@ diagnostics.priority                       *scrlbkun-config.diagnostics.priority
 When components overlap, the one with the higher priority is drawn.
 Specify by positive integer.
 Type: number (Default: 400)
+
+diagnostics.draw_columns                   *scrlbkun-config.diagnostics.columns*
+----------------
+What number, counting from the left, of the columns allocated
+by the `width` field should be used to display the diagnostics component.
+Specify in an array between 1 and `width`.
+Type: array (Default: {3})
 
 diagnostics.signs.ERROR                    *scrlbkun-config.diagnostics.signs.ERROR*
 ----------------
@@ -426,6 +465,13 @@ githunks.priority                          *scrlbkun-config.githunks.priority*
 When components overlap, the one with the higher priority is drawn.
 Specify by positive integer.
 Type: number (Default: 300)
+
+githubks.draw_columns                   *scrlbkun-config.githubks.columns*
+----------------
+What number, counting from the left, of the columns allocated
+by the `width` field should be used to display the githubks component.
+Specify in an array between 1 and `width`.
+Type: array (Default: {2})
 
 githunks.signs.add                         *scrlbkun-config.githunks.signs.add*
 ----------------

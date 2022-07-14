@@ -14,7 +14,12 @@ at the right edge of windows.
 * Positions of diagnostics results
 * Positions of git hunks (requires [gitsigns](https://github.com/lewis6991/gitsigns.nvim))
 
-Another feature is the auto-hiding of scrollbars.
+Other features are
+
+* A scrollbar will automatically hide after several seconds
+(with the default setting, after two seconds).
+* Display areas of a scrollbar and components can be
+distributed across multiple columns.
 
 Vim is not supported. It is available only to Neovim.
 
@@ -93,6 +98,9 @@ The default configuration is as follows.
     -- If set to 0, a scrollbar area isn't hidden over time.
     fadeout_time = 2000,
 
+    -- The number of columns for display areas of a scrollbar and components
+    width = 3,
+
     -- bar component
     bar = {
         -- If set to true, the bar component is enabled.
@@ -114,6 +122,11 @@ The default configuration is as follows.
         -- Specify by positive integer.
         priority = 100,
 
+        -- What number, counting from the left, of the columns allocated
+        -- by the `width` field should be used to display the component.
+        -- Specify in an array between 1 and `width`.
+        draw_columns = {1, 2, 3},
+
         -- A sign for a scrollbar. It is recommended not to change it from
         -- the default empty symbol.
         sign = " ",
@@ -127,6 +140,7 @@ The default configuration is as follows.
         draw_events = {"BufEnter", "FocusGained", "CursorMoved"},
         draw_events_tab = {"VimResized", "TabEnter"},
         priority = 200,
+        draw_columns = {1, 2, 3},
 
         -- Signs for a cursor. Specify in array. If you specify an array of n-elements,
         -- then the sign to be used is determined in n more levels depending on the
@@ -161,6 +175,7 @@ The default configuration is as follows.
             },
         },
         priority = 500
+        draw_columns = {1},
 
         -- Signs for search results.
         -- If you specify an array of n-elements,
@@ -184,6 +199,7 @@ The default configuration is as follows.
         draw_events = {},
         draw_events_tab = {"BufEnter", "DiagnosticChanged", "TabEnter"},
         priority = 400,
+        draw_columns = {2},
 
         -- Signs for diagnostics. 
         signs = {
@@ -208,6 +224,7 @@ The default configuration is as follows.
         draw_events_tab = {"BufEnter", "TabEnter",
             "TextChanged", "TextChangedI", "TextChangedP"},
         priority = 300,
+        draw_columns = {3},
 
         -- Signs for githunks. 
         signs = {

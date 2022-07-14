@@ -20,17 +20,24 @@ function M:draw(window_id)
 
     local coordinate_option_table = self:calculate(window_id)
 
-    for coordinate, option in pairs(coordinate_option_table) do
-        local ok, err = pcall(
-            api.nvim_buf_set_extmark,
-            states.states[window_id].display_buffer_number,
-            self.namespace_id,
-            coordinate,
-            0,
-            option
-        )
-        if not ok then
-            print(string.format('%s, %s, %d, %s', "scrlbkun", self.component_name, coordinate, err))
+    local config = require('scrlbkun.config').get()
+
+    for _, draw_column in ipairs(config[self.component_name].draw_columns) do
+        if draw_column <= config.width then
+            for coordinate, option in pairs(coordinate_option_table) do
+                local hp_0based = draw_column - 1
+                local ok, err = pcall(
+                    api.nvim_buf_set_extmark,
+                    states.states[window_id].display_buffer_number,
+                    self.namespace_id,
+                    coordinate,
+                    hp_0based,
+                    option
+                )
+                if not ok then
+                    print(string.format('%s, %s, %d, %d, %s', "scrlbkun", self.component_name, coordinate, hp_0based, err))
+                end
+            end
         end
     end
 
@@ -54,6 +61,7 @@ function M.new(component_name, default_config, highlights)
 
                 local enable = dc.enable
                 local priority = dc.priority
+                local draw_columns = dc.draw_columns
                 local draw_events = dc.draw_events
                 local draw_events_tab = dc.draw_events_tab
                 if not (enable ~= nil and draw_events and draw_events_tab and priority) then
@@ -64,6 +72,7 @@ function M.new(component_name, default_config, highlights)
                     and type(draw_events) == "table"
                     and type(draw_events_tab) == "table"
                     and type(priority) == "number"
+                    and type(draw_columns) == "table"
             end,
             "component config"
         },
