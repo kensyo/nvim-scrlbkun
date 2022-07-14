@@ -11,7 +11,7 @@ local default_config = {
         change = {"│"},
         -- " │ ┃ ┆ ┇ ┊ ┋",
     },
-    use_built_in_signs = false,
+    use_built_in_signs = true,
     draw_events = {},
     draw_events_tab = {"BufEnter", "TabEnter", "TextChanged", "TextChangedI", "TextChangedP"},
     priority = 300,
