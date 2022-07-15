@@ -27,6 +27,9 @@ Vim is not supported. It is available only to Neovim.
 
 ![scrlbkun_preview1](https://user-images.githubusercontent.com/9912146/177551550-b4f8c112-1dc5-4fa5-b9eb-1b6fcfd8bf51.gif)
 
+Multi columns
+![multirows_preview](https://user-images.githubusercontent.com/9912146/179189284-ec10603e-a863-49c2-88db-2b2171f30d56.png)
+
 ## Requirements
 
 scrlbkun requires Neovim >= 0.7.0
