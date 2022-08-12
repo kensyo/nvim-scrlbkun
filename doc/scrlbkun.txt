@@ -1,6 +1,6 @@
 *scrlbkun.txt*  A scrollbar plugin for Neovim.
 
-Version: 1.0.0
+Version: 1.1.1
 Author: kensyo <takitatateokowa at gmail.com>
 License: MIT
 
