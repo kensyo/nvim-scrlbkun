@@ -209,6 +209,16 @@ local function is_window_to_draw(window_id)
     return true
 end
 
+local function calculate_winblend_rate_in_fading_out(count, total_count)
+    -- TODO: make the basepoint configurable
+    local basepoint = 0.0 -- between 0 and 1
+    local base = count - total_count * basepoint
+
+    local rate = (base <= 0.0) and 0.0 or base / (total_count * (1 - basepoint))
+
+    return rate
+end
+
 local function fadeout(window_id)
     local s = states.states[window_id]
     if s.timer then
@@ -234,7 +244,11 @@ local function fadeout(window_id)
             if (not s2) or not s2.display_window_id then
                 return
             end
-            api.nvim_win_set_option(s.display_window_id, "winblend", math.floor(config.winblend + (100 - config.winblend) * count / total_count))
+            api.nvim_win_set_option(
+                s.display_window_id,
+                "winblend",
+                math.floor(config.winblend + (100 - config.winblend) * calculate_winblend_rate_in_fading_out(count, total_count))
+            )
             count = count + 1
         end
     end))
