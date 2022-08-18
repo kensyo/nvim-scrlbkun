@@ -91,10 +91,10 @@ The default configuration is as follows.
     -- winblend of scrollbar areas.
     winblend = 40,
 
-    -- On these filetypes, any scrollbars don't come out.
+    -- On these filetypes, scrollbars don't come out.
     excluded_filetypes = {"NvimTree"},
 
-    -- On these buftypes, any scrollbars don't come out.
+    -- On these buftypes, scrollbars don't come out.
     excluded_buftypes = {"prompt"},
 
     -- Time until a scrollbar area is hidden. Specify in milliseconds.
@@ -240,7 +240,7 @@ The default configuration is as follows.
         },
 
         -- The same as that of the search component
-        use_built_in_signs = false,
+        use_built_in_signs = true,
     },
 }
 ```

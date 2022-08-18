@@ -144,7 +144,7 @@ table is implicitly passed.
                 delete = {"▸"},
                 change = {"│"},
             },
-            use_built_in_signs = false,
+            use_built_in_signs = true,
         },
     }
 <
