@@ -18,7 +18,7 @@ Other features are
 
 * A scrollbar will automatically hide after several seconds
 (with the default setting, after two seconds).
-* Display areas of a scrollbar and components can be
+* Display areas of components can be
 distributed across multiple columns.
 
 Vim is not supported. It is available only to Neovim.
@@ -40,6 +40,9 @@ Switch `'hlsearch'` on to display search results
 :set hlsearch
 ```
 
+Install and set up [gitsigns](https://github.com/lewis6991/gitsigns.nvim) to
+display githunks.
+
 ## Installation
 
 You can install the plugin in any way you like, just like any other plugin.
@@ -49,9 +52,6 @@ For example, if you use [vim-plug](https://github.com/junegunn/vim-plug),
 ```vim
 Plug 'kensyo/nvim-scrlbkun'
 ```
-
-Don't forget to install [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
-as well if you want to display git hunks.
 
 ## Setup
 

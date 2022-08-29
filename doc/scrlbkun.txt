@@ -175,12 +175,12 @@ Type: number (Default: 40)
 
 excluded_filetypes                         *scrlbkun-config.excluded_filetypes*
 ----------------
-On these filetypes, any scrollbars don't come out.
+On these filetypes, scrollbars don't come out.
 Type: table (Default: {"NvimTree"})
 
 excluded_buftypes                          *scrlbkun-config.excluded_buftypes*
 ----------------
-On these buftypes, any scrollbars don't come out.
+On these buftypes, scrollbars don't come out.
 Type: table (Default: {"prompt"})
 
 fadeout_time                               *scrlbkun-config.fadeout_time*
