@@ -125,7 +125,7 @@ function M:calculate(window_id)
             local min = math.ceil(number_of_lines_per_row * coordinate)
             local max = math.ceil(number_of_lines_per_row * (coordinate + 1)) - 1
 
-            --- Number of numbers whose integer part when divided by `number_of_lines_per_row` is `coordinate`
+            --- the number of numbers whose integer part when divided by `number_of_lines_per_row` is `coordinate`
             local maximum_number_of_lines_coordinate_can_contain = max - min + 1
 
             local ratio = (numbers.upper + numbers.lower) / maximum_number_of_lines_coordinate_can_contain
