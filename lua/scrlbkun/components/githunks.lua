@@ -75,7 +75,7 @@ function M:calculate(window_id)
     local number_of_liness_in_display_buffer = s.number_of_lines_in_display_buffer
     local buffer_number = api.nvim_win_get_buf(window_id)
     local number_of_lines_in_buffer = api.nvim_buf_line_count(buffer_number)
-    local number_of_lines_per_row = number_of_lines_in_buffer / number_of_liness_in_display_buffer
+    -- local number_of_lines_per_row = number_of_lines_in_buffer / number_of_liness_in_display_buffer
 
     local hunks_info = {}
 
@@ -85,7 +85,8 @@ function M:calculate(window_id)
         local start_line = math.max(0, hunk.added.start - 1)
         for i = start_line, start_line + math.max(0, hunk.added.count - 1) do
 
-            local strict_coordinate = i / number_of_lines_per_row
+            -- local strict_coordinate = i * / number_of_lines_per_row
+            local strict_coordinate = i * number_of_liness_in_display_buffer / number_of_lines_in_buffer
             local coordinate = math.floor(strict_coordinate)
             local fractional_part = strict_coordinate - coordinate
 
@@ -122,8 +123,10 @@ function M:calculate(window_id)
 
             local numbers = detail[type_to_use]
 
-            local min = math.ceil(number_of_lines_per_row * coordinate)
-            local max = math.ceil(number_of_lines_per_row * (coordinate + 1)) - 1
+            -- local min = math.ceil(coordinate * number_of_lines_per_row)
+            local min = math.ceil(coordinate * number_of_lines_in_buffer / number_of_liness_in_display_buffer)
+            -- local max = math.ceil((coordinate + 1) * number_of_lines_per_row) - 1
+            local max = math.ceil((coordinate + 1) * number_of_lines_in_buffer / number_of_liness_in_display_buffer) - 1
 
             --- the number of numbers whose integer part when divided by `number_of_lines_per_row` is `coordinate`
             local maximum_number_of_lines_coordinate_can_contain = max - min + 1
@@ -188,7 +191,8 @@ function M:calculate(window_id)
             local number_of_signs = #(githunks_config.signs[type_to_use])
             local interval = 1 / number_of_signs
 
-            local ratio = (numbers.upper + numbers.lower) / number_of_lines_per_row
+            -- local ratio = (numbers.upper + numbers.lower) / number_of_lines_per_row
+            local ratio = (numbers.upper + numbers.lower) * number_of_liness_in_display_buffer / number_of_lines_in_buffer
 
             local sign_index = 1
 

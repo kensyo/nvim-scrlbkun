@@ -113,7 +113,8 @@ function M:calculate(window_id)
                 break
             end
 
-            local strict_coordinate = (line_number - 1) / number_of_lines_per_row
+            -- local strict_coordinate = (line_number - 1) / number_of_lines_per_row
+            local strict_coordinate = (line_number - 1) * number_of_lines_in_display_buffer / number_of_lines_in_buffer
             local coordinate = math.floor(strict_coordinate)
             local fractional_part = strict_coordinate - coordinate
             if match_result[coordinate] then
@@ -152,8 +153,10 @@ function M:calculate(window_id)
         local coordinates_with_upper_lower_the_same = {} -- key: coordinate, value: sign_index
 
         for coordinate, numbers in pairs(match_result) do
-            local min = math.ceil(number_of_lines_per_row * coordinate)
-            local max = math.ceil(number_of_lines_per_row * (coordinate + 1)) - 1
+            -- local min = math.ceil(coordinate * number_of_lines_per_row)
+            local min = math.ceil(coordinate * number_of_lines_in_buffer / number_of_lines_in_display_buffer)
+            -- local max = math.ceil((coordinate + 1) * number_of_lines_per_row) - 1
+            local max = math.ceil((coordinate + 1) * number_of_lines_in_buffer / number_of_lines_in_display_buffer) - 1
 
             --- the number of numbers whose integer part when divided by `number_of_lines_per_row` is `coordinate`
             local maximum_number_of_lines_coordinate_can_contain = max - min + 1
@@ -212,7 +215,8 @@ function M:calculate(window_id)
         local interval = 1 / number_of_search_signs
 
         for coordinate, numbers in pairs(match_result) do
-            local ratio = (numbers.upper + numbers.lower) / number_of_lines_per_row
+            -- local ratio = (numbers.upper + numbers.lower) / number_of_lines_per_row
+            local ratio = (numbers.upper + numbers.lower) * number_of_lines_in_display_buffer / number_of_lines_in_buffer
 
             local search_sign_index = 1
 

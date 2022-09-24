@@ -63,7 +63,7 @@ function M:calculate(window_id)
     local number_of_lines_in_display_buffer = s.number_of_lines_in_display_buffer
     local buffer_number = api.nvim_win_get_buf(window_id)
     local number_of_lines_in_buffer = api.nvim_buf_line_count(buffer_number)
-    local number_of_lines_per_row = number_of_lines_in_buffer / number_of_lines_in_display_buffer
+    -- local number_of_lines_per_row = number_of_lines_in_buffer / number_of_lines_in_display_buffer
 
     ---@type table<integer, table<integer, integer>>
     --- array of severity and line_number(0-based)
@@ -80,7 +80,8 @@ function M:calculate(window_id)
         if not util.deep_contains(check_list, checked_pair) then
             table.insert(check_list, checked_pair)
 
-            local strict_coordinate = lnum / number_of_lines_per_row
+            -- local strict_coordinate = lnum / number_of_lines_per_row
+            local strict_coordinate = lnum * number_of_lines_in_display_buffer / number_of_lines_in_buffer
             local coordinate = math.floor(strict_coordinate)
             local fractional_part = strict_coordinate - coordinate
 
@@ -126,8 +127,10 @@ function M:calculate(window_id)
 
             local numbers = detail[severity_to_use]
 
-            local min = math.ceil(number_of_lines_per_row * coordinate)
-            local max = math.ceil(number_of_lines_per_row * (coordinate + 1)) - 1
+            -- local min = math.ceil(coordinate * number_of_lines_per_row)
+            local min = math.ceil(coordinate * number_of_lines_in_buffer / number_of_lines_in_display_buffer)
+            -- local max = math.ceil((coordinate + 1) * number_of_lines_per_row) - 1
+            local max = math.ceil((coordinate + 1) * number_of_lines_in_buffer / number_of_lines_in_display_buffer) - 1
 
             --- the number of numbers whose integer part when divided by `number_of_lines_per_row` is `coordinate`
             local maximum_number_of_lines_coordinate_can_contain = max - min + 1
@@ -201,7 +204,8 @@ function M:calculate(window_id)
 
             local numbers = detail[severity_to_use]
 
-            local ratio = (numbers.upper + numbers.lower) / number_of_lines_per_row
+            -- local ratio = (numbers.upper + numbers.lower) / number_of_lines_per_row
+            local ratio = (numbers.upper + numbers.lower) * number_of_lines_in_display_buffer / number_of_lines_in_buffer
 
             local sign_index = 1
 
