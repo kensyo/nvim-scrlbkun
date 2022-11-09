@@ -4,7 +4,7 @@ local util = require('scrlbkun.util')
 
 local M = {}
 
-local hide_events = {"WinLeave", "BufLeave", "BufWinLeave", "FocusLost"}
+local hide_events = {"WinLeave", "BufLeave", "FocusLost"}
 local delete_events = {"QuitPre"}
 
 local function execute_for_winscrolled(window_id)
