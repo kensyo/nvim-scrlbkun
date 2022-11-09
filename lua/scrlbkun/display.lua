@@ -28,13 +28,13 @@ local function form_buffer(window_id)
     end
 
     local config = require('scrlbkun.config').get()
-    local inserted_empties = ""
+    local inserted_spaces = ""
     for _ = 1, config.width - 1 do
-        inserted_empties = inserted_empties .. " "
+        inserted_spaces = inserted_spaces .. " "
     end
 
     for _ = 1, s.number_of_lines_in_display_buffer do
-        table.insert(lines, inserted_empties)
+        table.insert(lines, inserted_spaces)
     end
 
     api.nvim_buf_set_lines(s.display_buffer_number, 0, -1, true, lines)
