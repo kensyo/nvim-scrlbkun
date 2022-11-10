@@ -160,17 +160,17 @@ General Fields~
 single_window                              *scrlbkun-config.single_window*
 ----------------
 If you want to display scrollbars on multiple windows, set to false.
-If set to true, a scrollbar area comes out only on the current window.
+If set to true, a display area comes out only on the current window.
 Type: boolean (Default: true)
 
 zindex                                     *scrlbkun-config.zindex*
 ----------------
-zindex of scrollbar areas. See the parameters for |nvim_oepn_win()|.
+zindex of display areas. See the parameters for |nvim_oepn_win()|.
 Type: number (Default: 10)
 
 winblend                                   *scrlbkun-config.winblend*
 ----------------
-'winblend' of scrollbar areas.
+'winblend' of display areas.
 Type: number (Default: 40)
 
 excluded_filetypes                         *scrlbkun-config.excluded_filetypes*
@@ -185,8 +185,8 @@ Type: table (Default: {"prompt"})
 
 fadeout_time                               *scrlbkun-config.fadeout_time*
 ----------------
-Time until a scrollbar area is hidden. Specify in milliseconds.
-If set to 0, a scrollbar area isn't hidden over time.
+Time until a display area is hidden. Specify in milliseconds.
+If set to 0, a display area isn't hidden over time.
 Type: number (Default: 2000)
 
 width                                      *scrlbkun-config.width*

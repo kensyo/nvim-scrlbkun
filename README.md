@@ -82,13 +82,13 @@ The default configuration is as follows.
 ```lua
 {
     -- If you want to display scrollbars on multiple windows, set to false.
-    -- If set to true, a scrollbar area comes out only on the current window.
+    -- If set to true, a display area comes out only on the current window.
     single_window = true,
 
-    -- zindex of scrollbar areas.
+    -- zindex of display areas.
     zindex = 10,
 
-    -- winblend of scrollbar areas.
+    -- winblend of display areas.
     winblend = 40,
 
     -- On these filetypes, scrollbars don't come out.
@@ -97,11 +97,11 @@ The default configuration is as follows.
     -- On these buftypes, scrollbars don't come out.
     excluded_buftypes = {"prompt"},
 
-    -- Time until a scrollbar area is hidden. Specify in milliseconds.
-    -- If set to 0, a scrollbar area isn't hidden over time.
+    -- Time until a display area is hidden. Specify in milliseconds.
+    -- If set to 0, a display area isn't hidden over time.
     fadeout_time = 2000,
 
-    -- The number of columns for display areas of a scrollbar and components
+    -- The number of columns for display areas of components
     width = 3,
 
     -- bar component
