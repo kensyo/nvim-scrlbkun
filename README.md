@@ -224,8 +224,12 @@ The default configuration is as follows.
         -- The same as those of the bar component
         enable = true,
         draw_events = {},
-        draw_events_tab = {"BufEnter", "TabEnter",
-            "TextChanged", "TextChangedI", "TextChangedP"},
+        draw_events_tab = {
+            {
+                "User",
+                "GitSignsUpdate"
+            }
+        },
         priority = 300,
         draw_columns = {3},
 

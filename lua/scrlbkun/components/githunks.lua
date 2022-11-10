@@ -14,7 +14,12 @@ local default_config = {
     use_built_in_signs = true,
     draw_columns = {2},
     draw_events = {},
-    draw_events_tab = {"BufEnter", "TabEnter", "TextChanged", "TextChangedI", "TextChangedP"},
+    draw_events_tab = {
+        {
+            "User",
+            "GitSignsUpdate"
+        }
+    },
     priority = 300,
 }
 

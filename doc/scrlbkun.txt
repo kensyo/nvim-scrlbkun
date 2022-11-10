@@ -135,8 +135,12 @@ table is implicitly passed.
         githunks = {
             enable = true,
             draw_events = {},
-            draw_events_tab = {"BufEnter", "TabEnter",
-                "TextChanged", "TextChangedI", "TextChangedP"},
+            draw_events_tab = {
+                {
+                    "User",
+                    "GitSignsUpdate"
+                }
+            },
             priority = 300,
             draw_columns = {3},
             signs = {
