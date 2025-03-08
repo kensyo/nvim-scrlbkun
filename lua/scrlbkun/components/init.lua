@@ -2,6 +2,7 @@ local M = {}
 
 local components = {
     require('scrlbkun.components.bar'),
+    require('scrlbkun.components.bar_fold'),
     require('scrlbkun.components.search'),
     require('scrlbkun.components.diagnostics'),
     require('scrlbkun.components.cursor'),

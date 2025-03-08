@@ -8,6 +8,7 @@ scrlbkun enables Neovim to display the following components
 at the right edge of windows.
 
 * Scrollbar
+* Scrollbar for folded parts
 * Cursor position
 * Positions of matched terms in the search mode
 (the `'hlsearch'` option must be on)
@@ -70,7 +71,7 @@ pass a configuration table to the setup funciton
 require('scrlbkun').setup({
     single_window = false,
     cursor = {
-            enable = false
+        enable = false
     }
 })
 ```
@@ -132,6 +133,18 @@ The default configuration is as follows.
 
         -- A sign for a scrollbar. It is recommended not to change it from
         -- the default empty symbol.
+        sign = " ",
+
+    },
+
+    -- bar component for folded parts
+    bar_fold = {
+        -- The same as those of the bar component
+        enable = true,
+        draw_events = {"WinScrolled", "BufEnter", "FocusGained"},
+        draw_events_tab = {"VimResized", "TabEnter"},
+        priority = 150,
+        draw_columns = {1, 2, 3},
         sign = " ",
 
     },
@@ -254,6 +267,7 @@ The default configuration is as follows.
 You can configure the following highlights.
 
 * `ScrlbkunBar`
+* `ScrlbkunBarFold`
 * `ScrlbkunCursor`
 * `ScrlbkunSearch`
 * `ScrlbkunDiagnosticsError`
@@ -273,6 +287,7 @@ Lua functions to switch between enable and disable are provided.
 require('scrlbkun.components').enable_all()
 
 require('scrlbkun.components.bar'):enable()
+require('scrlbkun.components.bar_fold'):enable()
 require('scrlbkun.components.cursor'):enable()
 require('scrlbkun.components.search'):enable()
 require('scrlbkun.components.diagnostics'):enable()
@@ -282,6 +297,7 @@ require('scrlbkun.components.githunks'):enable()
 require('scrlbkun.components').disable_all()
 
 require('scrlbkun.components.bar'):disable()
+require('scrlbkun.components.bar_fold'):disable()
 require('scrlbkun.components.cursor'):disable()
 require('scrlbkun.components.search'):disable()
 require('scrlbkun.components.diagnostics'):disable()

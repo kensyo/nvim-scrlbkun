@@ -1,6 +1,6 @@
 *scrlbkun.txt*  A scrollbar plugin for Neovim.
 
-Version: 1.1.4
+Version: 1.1.5
 Author: kensyo <takitatateokowa at gmail.com>
 License: MIT
 
@@ -25,6 +25,7 @@ INTRODUCTION                               *scrlbkun-introduction*
 of windows.
 
 * Scrollbar
+* Scrollbar for folded parts
 * Cursor position
 * Positions of matched terms in the search mode (the `'hlsearch'` option must be on)
 * Positions of diagnostics results
@@ -74,6 +75,15 @@ table is implicitly passed.
             draw_events_tab = {"VimResized", "TabEnter"},
             priority = 100,
             draw_columns = {1, 2, 3},
+            sign = " ",
+        },
+
+        bar_fold = {
+            enable = true,
+            draw_events = { "WinScrolled", "BufEnter", "FocusGained" },
+            draw_events_tab = { "VimResized", "TabEnter" },
+            priority = 150,
+            draw_columns = { 1, 2, 3 },
             sign = " ",
         },
 
@@ -240,6 +250,51 @@ Type: array (Default: {1, 2, 3})
 bar.sign                                   *scrlbkun-config.bar.sign*
 ----------------
 A sign for a scrollbar. It is recommended not to change it from
+the default empty symbol.
+Type: string (Default: ' ')
+
+Fields for the bar_fold component~
+
+bar_fold.enable                                 *scrlbkun-config.bar_fold.enable*
+----------------
+If set to true, the bar_fold component is enabled.
+Type: boolean (Default: true)
+
+bar_fold.draw_events                            *scrlbkun-config.bar_fold.draw_events*
+----------------
+The bar_fold component is drawn at these events.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
+Type: table (Default: {"WinScrolled", "BufEnter", "FocusGained"})
+
+bar_fold.draw_events_tab                        *scrlbkun-config.bar_fold.draw_events_tab*
+----------------
+The bar_fold component is drawn on all the windows in the current tabpage
+at these events. But if |scrlbkun-config.single_window| is set to true,
+|scrlbkun-config.bar_fold.draw_events_tab| is treated exactly the same as
+|scrlbkun-config.bar_fold.draw_events|.
+If you want to specify patterns as well, specify them as an array
+{event_name(string), patterns(string|array)}. For example,
+{"CmdlineLeave", {"/", "\\?"}}.
+Type: table (Default: {"VimResized", "TabEnter"})
+
+bar_fold.priority                               *scrlbkun-config.bar_fold.priority*
+----------------
+When components overlap, the one with the higher priority is drawn.
+Specify by positive integer.
+Type: number (Default: 150)
+
+bar_fold.draw_columns                           *scrlbkun-config.bar_fold.columns*
+----------------
+What number, counting from the left, of the columns allocated
+by the `width` field should be used to display the bar_fold component.
+Specify in an array between 1 and `width`.
+Type: array (Default: {1, 2, 3})
+
+bar_fold.sign                                   *scrlbkun-config.bar_fold.sign*
+----------------
+A sign for a scrollbar for folded parts. It is recommended not to change it from
 the default empty symbol.
 Type: string (Default: ' ')
 
@@ -511,6 +566,7 @@ HIGHLIGHTING                               *scrlbkun-highlighting*
 You can configure the following highlights.
 
 ScrlbkunBar                                *scrlbkun-highlighting-ScrlbkunBar*
+ScrlbkunBarFold                            *scrlbkun-highlighting-ScrlbkunBarFold*
 ScrlbkunCursor                             *scrlbkun-highlighting-ScrlbkunCursor*
 ScrlbkunSearch                             *scrlbkun-highlighting-ScrlbkunSearch*
 ScrlbkunDiagnosticsError                   *scrlbkun-highlighting-ScrlbkunDiagnosticsError*
@@ -535,27 +591,31 @@ All the components are enabled.
                                            *scrlbkun-functions.components.bar.enable()*
 require('scrlbkun.components.bar').enable()
 ----------------
-The bar components is enabled.
+The bar component is enabled.
+                                           *scrlbkun-functions.components.bar_fold.enable()*
+require('scrlbkun.components.bar_fold').enable()
+----------------
+The bar component for foled parts is enabled.
 
                                            *scrlbkun-functions.components.cursor.enable()*
 require('scrlbkun.components.cursor').enable()
 ----------------
-The cursor components is enabled.
+The cursor component is enabled.
 
                                            *scrlbkun-functions.components.search.enable()*
 require('scrlbkun.components.search').enable()
 ----------------
-The search components is enabled.
+The search component is enabled.
 
                                            *scrlbkun-functions.components.diagnostics.enable()*
 require('scrlbkun.components.diagnostics').enable()
 ----------------
-The diagnostics components is enabled.
+The diagnostics component is enabled.
 
                                            *scrlbkun-functions.components.githunks.enable()*
 require('scrlbkun.components.githunks').enable()
 ----------------
-The githunks components is enabled.
+The githunks component is enabled.
 
 
 Disabling functions~
@@ -569,25 +629,29 @@ require('scrlbkun.components.bar').disable()
 ----------------
 The bar components is disabled.
 
+                                           *scrlbkun-functions.components.bar_fold.disable()*
+require('scrlbkun.components.bar_fold').disable()
+----------------
+The bar component for folded parts is disabled.
                                            *scrlbkun-functions.components.cursor.disable()*
 require('scrlbkun.components.cursor').disable()
 ----------------
-The cursor components is disabled.
+The cursor component is disabled.
 
                                            *scrlbkun-functions.components.search.disable()*
 require('scrlbkun.components.search').disable()
 ----------------
-The search components is disabled.
+The search component is disabled.
 
                                            *scrlbkun-functions.components.diagnostics.disable()*
 require('scrlbkun.components.diagnostics').disable()
 ----------------
-The diagnostics components is disabled.
+The diagnostics component is disabled.
 
                                            *scrlbkun-functions.components.githunks.disable()*
 require('scrlbkun.components.githunks').disable()
 ----------------
-The githunks components is disabled.
+The githunks component is disabled.
 
 ==============================================================================
 vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl
